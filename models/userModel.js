@@ -1,27 +1,43 @@
+const { models } = require("../models/index");
+
 module.exports = {
-    // createUser : function(){
-    //     try{
-    //         return "Create User Model";
-    //     }catch (error){
-    //         return error;
-    //     }
-    // },
-    createUser: function(body){
-        try{
-        
-            return body;
+  // createUser : function(){
+  //     try{
+  //         return "Create User Model";
+  //     }catch (error){
+  //         return error;
+  //     }
+  // },
+  createUser: async function (body) {
+    try {
+      return await models.User.create({ ...body });
+    } catch (error) {
+      return error;
     }
-        catch(error){
-            return error;
-        }
-      },
-    getUser : function(body){
-        try{
-        
-            return body;
+  },
+  getUsers: async function () {
+    // no need to set parameters bcz data set nai krna
+    try {
+      return await models.User.findAll({
+        attributes: { exclude: ["password"] },
+      });
+    } catch (error) {
+      return error;
     }
-        catch(error){
-            return error;
-        }
+  },
+  getUserbyEmail: async function (email) {
+    try {
+      //   return await models.User.findOne(email);
+      return await models.User.findOne({
+        where: {
+          email: email,
+        },
+        attributes: {
+          exclude: ["password"],
+        },
+      });
+    } catch (error) {
+      return error;
     }
-}
+  },
+};

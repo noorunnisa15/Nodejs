@@ -5,7 +5,7 @@
     "username": "postgres",
     "password": "noor@12",
     "database": "firstserverDB",
-    "logging": true,
+    "logging": false,
     "dialect": "postgres"
   }
 }
