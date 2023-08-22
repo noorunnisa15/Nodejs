@@ -31,13 +31,43 @@ module.exports = {
   },
   getUserbyEmail: async function (email) {
     try {
-        const response = await userModel.getUserbyEmail(email);
-        if (response) {
-          return response;
-        }
-        return "No Data Exits";
+      const response = await userModel.getUserbyEmail(email);
+      if (response) {
+        return response;
+      }
+      return "No Data Exits";
     } catch (error) {
       return error;
     }
-  }
+  },
+  updateUser: async function (body) {
+    try {
+      const user = await userModel.getUserbyId(body.id);
+      if (!user) {
+        return "No such user exists";
+      }
+      const response = await userModel.updateUser(body);
+      if (response) {
+        return response;
+      }
+      return "Unable to update";
+    } catch (error) {
+      return error;
+    }
+  },
+  deleteUser: async function (id) {
+    try {
+      const user = await userModel.getUserbyId(id);
+      if (!user) {
+        return "No such user exists";
+      }
+      const response = await userModel.deleteUser(id);
+      if (response) {
+        return response;
+      }
+      return "Unable to delete";
+    } catch (error) {
+      return error;
+    }
+  },
 };

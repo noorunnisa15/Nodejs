@@ -1,3 +1,4 @@
+const { response } = require("express");
 const { models } = require("../models/index");
 
 module.exports = {
@@ -36,6 +37,42 @@ module.exports = {
           exclude: ["password"],
         },
       });
+    } catch (error) {
+      return error;
+    }
+  },
+  getUserbyId: async function (id) {
+    try {
+      //   return await models.User.findOne(email);
+      return await models.User.findOne({
+        where: {
+          id: id,
+        },
+        attributes: {
+          exclude: ["password"],
+        },
+      });
+    } catch (error) {
+      return error;
+    }
+  },
+  updateUser: async function (body) {
+    try {
+      return await models.User.update(
+        { ...body },
+        {
+          where: {
+            id: body.id,
+          },
+        }
+      );
+    } catch (error) {
+      return error;
+    }
+  },
+  deleteUser: async (id) => {
+    try {
+      return await models.User.destroy({ where: { id: id } });
     } catch (error) {
       return error;
     }
