@@ -21,6 +21,10 @@ Products.init(
       allowNull: false,
       type: DataTypes.INTEGER,
     },
+    productSize: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
     productColor: {
       allowNull: false,
       type: DataTypes.STRING,

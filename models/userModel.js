@@ -10,6 +10,8 @@ module.exports = {
   //     }
   // },
   createUser: async function (body) {
+    console.log("model");
+    console.log("model");
     try {
       return await models.User.create({ ...body });
     } catch (error) {

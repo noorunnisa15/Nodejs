@@ -8,8 +8,8 @@ const { User, Admin, Cart, Products, CartHasProducts } = require("./definitions/
 User.hasOne(Cart, { foreignKey: "userId" });
 Cart.belongsTo(User, { foreignKey: { name: "userId", allowNull: false } });
 
-Admin.hasMany(User, { foreignKey: "adminId" });
-User.belongsTo(Admin, { foreignKey: { name: "adminId", allowNull: false } });
+// Admin.hasMany(User, { foreignKey: "adminId" });
+// User.belongsTo(Admin, { foreignKey: { name: "adminId", allowNull: false } });
 
 Cart.hasMany(CartHasProducts, { foreignKey: "cartId" });
 CartHasProducts.belongsTo(Cart, { foreignKey: { name: "cartId", allowNull: false } });

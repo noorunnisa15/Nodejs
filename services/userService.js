@@ -1,19 +1,32 @@
 const userModel = require("../models/userModel");
+const cartModel = require("../models/cartModel");
 const bcrypt = require("bcrypt");
 
 module.exports = {
   createUser: async function (body) {
     // const response = userModel.createUser(body);
     // return response;
+    console.log("userservices")
     try {
       const saltRounds = 10;
       body.password = await bcrypt.hash(body.password, saltRounds);
       const response = await userModel.createUser(body);
       if (response) {
-        delete response.dataValues.password;
-        return response;
+        // delete response.dataValues.password;
+      //   const cart = await cartModel.createCart(response.dataValues.id);
+      //   if (cart) {
+      //     return {
+      //       user: response,
+      //       cart: cart,
+      //     };
+      //   }
+      //   const deleteUser = await userModel.deleteUser(response.dataValues.id);
+      //   if (deleteUser) {
+      //     return "unable to create User";
+      //   }
       }
-      return "User not created";
+      // return "User not created";
+      return response;
     } catch (error) {
       return error;
     }

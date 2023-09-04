@@ -10,6 +10,7 @@ const createUserSchema = joi.object({
   // Previous
   email: joi.string().required(),
   password: joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")).required(),
+  // adminId: joi.number().required(),
 });
 
 const userEmailSchema = joi.object({
@@ -32,6 +33,7 @@ module.exports = {
   //     res.send(response);
   // },
   createUser: async function (req, res) {
+    console.log("usercontroller");
     try {
       const validate = await createUserSchema.validateAsync(req.body);
       if (validate.error) {
